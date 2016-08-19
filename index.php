@@ -20,6 +20,7 @@ var_dump($_POST);
 echo "Crear objeto<br>";
 $mgClient = new Mailgun('key-6457d2a0621240856976be1a081ab670');
 $domain = "sandboxd44d446510644d9ea0440e19424236f3.mailgun.org";
+var_dump($mgClient, $domain);
 
 echo "Probar envio.<br>";
 $result = $mgClient->sendMessage($domain, array(
