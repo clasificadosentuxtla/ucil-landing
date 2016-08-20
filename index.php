@@ -30,7 +30,7 @@ echo "<h2>Nette</h2>";
 $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
-        ->setSubject('Probando salida')
+        ->setSubject('Probando salida con Nette')
         ->setBody("Tu correo acepto la salida.");
 $mailer = new SmtpMailer([
                 'host' => 's55.grupocopydata.com',
@@ -41,19 +41,6 @@ $mailer = new SmtpMailer([
 $result = $mailer->send($mail);
 
 var_dump($mail, $mailer, $result);
-
-echo "<h2>Mailgun</h2>";
-
-$mg = new Mailgun("key-6457d2a0621240856976be1a081ab670");
-$domain = "sandboxd44d446510644d9ea0440e19424236f3.mailgun.or";
-$result_mg = $mg->sendMessage($domain, array(
-    'from'    => $data['from'], 
-    'to'      => $data['to'], 
-    'subject' => 'Probando salida', 
-    'text'    => 'Tu correo acepto la salida.'
-));
-
-var_dump($mg, $result_mg);
 
 echo "Redireccionar a: http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php";
 
