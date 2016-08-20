@@ -38,13 +38,13 @@ $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
         ->setBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
-$result = $mail_smtp->send($mail);
+// $result = $mail_smtp->send($mail);
 
 $html = "";
-$html .= "De: ".$data['name']." &lt;". $data['email']."&gt; < <br>";
+$html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
 $html .= "Mando petición de inscripción a Maestria de Gestion de Negocios, se enviara un correo automatico.<br>";
 $html .= "<br>";
-$html .= "<br>-- ";
+$html .= "-- <br>";
 $html .= "Este mensaje se ha enviado desde un formulario de <a href='http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php'>ucil.mx.57aa4811dee41</a>";
 $html .= "";
 
@@ -61,12 +61,43 @@ foreach ($mail2meadds as $mail2meaddto) {
             ->setSubject('Inscripción MGN16')
             ->setHTMLBody($html);
 
-    $result2me = $mail_smtp->send($mail2me);
+    // $result2me = $mail_smtp->send($mail2me);
 }
 
-echo "<pre>";
-var_dump($mail_smtp, $mail, $mail2me, $result); // 
-echo "</pre>";
+ ?>
 
-echo "<p>Redireccionar a: http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php</p>";
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<?php 
+$redirect_url = "http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php";
+header("Location: ".$redirect_url);
+
+?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/css/creative.css">
+
+</head>
+<body>
+
+    <section class="" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h1>Esta siendo redireccionado...</h1>
+                    <p>Usted esta siendo redireccionado al sitio web de <a href="<?php echo $redirect_url; ?>">ucil.mx/gracias.html</a>, si no cambia en los siguientes 5 segundos por favor haga click <a href="<?php echo $redirect_url; ?>">AQUI</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
