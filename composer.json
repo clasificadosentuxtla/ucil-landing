@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "require": {
         "mailgun/mailgun-php": "2.*",
-        "mailchimp/mailchimp": "2.*"
+        "mailchimp/mailchimp": "2.*",
+        "nette/mail": "^2.4"
     }
 }
