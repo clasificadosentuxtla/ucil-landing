@@ -38,7 +38,7 @@ $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
         ->setBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
-// $result = $mail_smtp->send($mail);
+$result = $mail_smtp->send($mail);
 
 $html = "";
 $html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
@@ -61,7 +61,7 @@ foreach ($mail2meadds as $mail2meaddto) {
             ->setSubject('Inscripción MGN16')
             ->setHTMLBody($html);
 
-    // $result2me = $mail_smtp->send($mail2me);
+    $result2me = $mail_smtp->send($mail2me);
 }
 
  ?>
