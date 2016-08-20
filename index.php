@@ -37,7 +37,7 @@ $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
-        ->setBody("Tu correo acepto la salida.");
+        ->setBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
 
 $html = "";
 $html .= "De: ".$data['name']." &lt;". $data['email']."&gt; < <br>";
@@ -56,7 +56,7 @@ $mail2me->setFrom($data['from'])
         ->setBody($html);
 
 $result = $mail_smtp->send($mail);
-$result2me = $mail_smtp->send($mail);
+$result2me = $mail_smtp->send($mail2me);
 
 echo "<pre>";
 // var_dump($mail, $result, $mailer2me, 'result2me', $result2me, $html);
