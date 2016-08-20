@@ -26,7 +26,6 @@ $data['to'] = (string) $_POST['FNAME'].' <'.$data['email'].'>';
 
 var_dump($data);
 
-echo "<h2>Nette</h2>";
 $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
@@ -40,7 +39,29 @@ $mailer = new SmtpMailer([
 ]);
 $result = $mailer->send($mail);
 
-var_dump($mail, $mailer, $result);
+
+$mail2me = new Message;
+$mail2me->setFrom($data['from'])
+        ->addTo('desarrollo@sicii.com.mx')
+        ->addTo('webmaster.eddyramos@gmail.com')
+        ->addTo('lievanoabadiaj@gmail.com')
+        ->setSubject('Inscripción MGN16')
+        ->setBody("
+            De: $data['name'] $data['email'] <br>
+            Mando petición de inscripción a Maestria de Gestion de Negocios, se enviara un correo automatico.<br>
+            <br>
+            <br>-- 
+            Este mensaje se ha enviado desde un formulario de <a href='http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php'>ucil.mx.57aa4811dee41</a>
+        ");
+$mailer2me = new SmtpMailer([
+                'host' => 's55.grupocopydata.com',
+                'username' => 'inscripciones@ucil.sicii.com.mx',
+                'password' => 'sb$SC%10',
+                'secure' => 'ssl'
+]);
+$result = $mailer2me->send($mail);
+
+var_dump($mail, $mailer2me, $result);
 
 echo "Redireccionar a: http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php";
 
