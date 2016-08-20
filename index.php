@@ -26,18 +26,18 @@ $data['to'] = (string) $_POST['FNAME'].' <'.$data['email'].'>';
 
 var_dump($data);
 
-$mail = new Message;
-$mail->setFrom($data['from'])
-        ->addTo($data['to'])
-        ->setSubject('Probando salida con Nette')
-        ->setBody("Tu correo acepto la salida.");
-$mailer = new SmtpMailer([
+$mail_smtp = new SmtpMailer([
                 'host' => 's55.grupocopydata.com',
                 'username' => 'inscripciones@ucil.sicii.com.mx',
                 'password' => 'sb$SC%10',
                 'secure' => 'ssl'
 ]);
-$result = $mailer->send($mail);
+
+$mail = new Message;
+$mail->setFrom($data['from'])
+        ->addTo($data['to'])
+        ->setSubject('Solicitud de Inscripción Recibida.')
+        ->setBody("Tu correo acepto la salida.");
 
 $html = "";
 $html .= "De: ".$data['name']." &lt;". $data['email']."&gt; < <br>";
@@ -54,16 +54,13 @@ $mail2me->setFrom($data['from'])
         ->addTo('lievanoabadiaj@gmail.com')
         ->setSubject('Inscripción MGN16')
         ->setBody($html);
-$mailer2me = new SmtpMailer([
-                'host' => 's55.grupocopydata.com',
-                'username' => 'inscripciones@ucil.sicii.com.mx',
-                'password' => 'sb$SC%10',
-                'secure' => 'ssl'
-]);
-$result2me = $mailer2me->send($mail);
+
+$result = $mail_smtp->send($mail);
+$result2me = $mail_smtp->send($mail);
 
 echo "<pre>";
-var_dump($mail, $result, $mailer2me, $result2me, $html);
+// var_dump($mail, $result, $mailer2me, 'result2me', $result2me, $html);
+var_dump($mail_smtp, $mail, $mail2me);
 echo "</pre>";
 
 echo "<p>Redireccionar a: http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php</p>";
