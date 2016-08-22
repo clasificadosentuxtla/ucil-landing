@@ -40,13 +40,10 @@ $mail->setFrom($data['from'])
         ->setBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
 $result = $mail_smtp->send($mail);
 
-$html = "";
-$html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
-$html .= "Mando petición de inscripción a Maestria de Gestion de Negocios, se enviara un correo automatico.<br>";
-$html .= "<br>";
-$html .= "-- <br>";
-$html .= "Este mensaje se ha enviado desde un formulario de <a href='http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php'>ucil.mx.57aa4811dee41</a>";
-$html .= "";
+$file = "view/inscription.latte";
+
+$handle = file_get_contents("$file");
+$html = $handle;
 
 $mail2meadds = [
     'desarrollo@sicii.com.mx',
