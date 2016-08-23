@@ -39,8 +39,8 @@ $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
-        ->setHTMLBody($handle);
-$result = $mail_smtp->send($html);
+        ->setHTMLBody($html);
+$result = $mail_smtp->send($mail);
 
 $html = "";
 $html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
