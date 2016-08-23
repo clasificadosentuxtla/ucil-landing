@@ -39,8 +39,8 @@ $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
-        ->setHTMLBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
-$result = $mail_smtp->send($mail);
+        ->setHTMLBody($handle);
+$result = $mail_smtp->send($html);
 
 $html = "";
 $html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
