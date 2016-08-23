@@ -24,7 +24,9 @@ $data['phone'] = $_POST['PHONE'];
 $data['from'] = 'Inscripcion Ucil <inscripciones@ucil.sicii.com.mx>';
 $data['to'] = (string) $_POST['FNAME'].' <'.$data['email'].'>';
 
-var_dump($data);
+$file = "view/inscription.latte";
+$handle = file_get_contents("$file");
+$html = $handle;
 
 $mail_smtp = new SmtpMailer([
                 'host' => 's55.grupocopydata.com',
@@ -37,13 +39,16 @@ $mail = new Message;
 $mail->setFrom($data['from'])
         ->addTo($data['to'])
         ->setSubject('Solicitud de Inscripción Recibida.')
-        ->setBody("Tu correo acepto la salida. ".date('d-M-Y h:ia'));
+        ->setHTMLBody($html);
 $result = $mail_smtp->send($mail);
 
-$file = "view/inscription.latte";
-
-$handle = file_get_contents("$file");
-$html = $handle;
+$html = "";
+$html .= "De: ".$data['name']." &lt;". $data['email']."&gt; <br>";
+$html .= "Mando petición de inscripción a Maestria de Gestion de Negocios, se enviara un correo automatico.<br>";
+$html .= "<br>";
+$html .= "-- <br>";
+$html .= "Este mensaje se ha enviado desde un formulario de <a href='http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php'>ucil.mx.57aa4811dee41</a>";
+$html .= "";
 
 $mail2meadds = [
     'desarrollo@sicii.com.mx',
@@ -61,7 +66,10 @@ foreach ($mail2meadds as $mail2meaddto) {
     $result2me = $mail_smtp->send($mail2me);
 }
 
- ?>
+$redirect_url = "http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php";
+header("Location: ".$redirect_url);
+
+?>
 
 
 <!DOCTYPE html>
@@ -69,11 +77,6 @@ foreach ($mail2meadds as $mail2meaddto) {
 
 <head>
 
-<?php 
-$redirect_url = "http://ucil.mx.57aa4811dee41.635775913472199676-1325727676.mini1.studiobuque.com/landing/57aa4811dee41/gracias.php";
-header("Location: ".$redirect_url);
-
-?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
